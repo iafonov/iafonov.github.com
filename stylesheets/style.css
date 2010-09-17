@@ -1,0 +1,35 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6em;
+  width: 300px;
+}
+
+body h2 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 25px;
+}
+
+body a {
+  color: #1177DD;
+}
+
+#content {
+  float: right;
+}
+
+#contacts {
+  padding: 0;
+  margin: 0;
+}
+
+#contacts li {
+  list-style-type:none;
+  padding: 2px;
+}
+
+.skype {
+  background: transparent url("../images/skype.png") no-repeat;
+  background-position: -3px -3px;
+  padding-left: 20px;
+}
