@@ -3,9 +3,9 @@ title: Setting up Jenkins CI to run selenium tests and record video in three eas
 ---
 <link href="../stylesheets/markdown.css" rel="stylesheet"></link>
 
-[<< Back][3]
-
 # Setting up Jenkins CI to run selenium tests and record video in three easy steps #
+
+[<< Back][3]
 
 1. Add [`headless`] [1] gem to test environment dependencies in your Gemfile:
 
