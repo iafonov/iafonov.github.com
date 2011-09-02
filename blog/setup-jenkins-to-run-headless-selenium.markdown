@@ -63,9 +63,12 @@ title: Setting up Jenkins CI to run selenium tests and record video in three eas
 
     Result:
 
-    After each build on build's page you'll see list of videos of failed scenarios. Most modern browsers support video 
+    After each build on build's page you'll see list of videos of failed scenarios. Most modern browsers support direct video playback of mov format which is used by `headless` by default.
 
     ![alt text](http://i.imgur.com/a82XV.png "Results")
 
+[<< Back][3]
+
 [1]: https://github.com/leonid-shevtsov/headless        "headless"
 [2]: http://en.wikipedia.org/wiki/Xvfb        "Xvfb"
+[3]: http://iafonov.github.com        "Home"

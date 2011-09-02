@@ -2,19 +2,23 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.6em;
-  width: 400px;
+  width: 800px;
 }
 
-body h2 {
+body h3 {
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 100;
-  font-size: 45px;
+  font-size: 35px;
 }
 
 body a {
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: #1177DD;
+}
+
+.date {
+  font-style:italic
 }
 
 #contacts {
@@ -25,6 +29,11 @@ body a {
 #contacts li {
   list-style-type:none;
   padding: 4px;
+}
+
+#posts {
+  padding: 0px;
+  padding-left: 20px;
 }
 
 .skype {
@@ -49,5 +58,10 @@ body a {
 
 .stackoverflow {
   background: transparent url("../images/stack.ico") no-repeat;
+  padding-left: 20px;
+}
+
+.twitter {
+  background: transparent url("../images/twitter.ico") no-repeat;
   padding-left: 20px;
 }
