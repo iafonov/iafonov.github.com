@@ -3,17 +3,19 @@ title: Setting up Jenkins CI to run selenium tests and record video in three eas
 ---
 <link href="../stylesheets/markdown.css" rel="stylesheet"></link>
 
+[<< Back][3]
+
 # Setting up Jenkins CI to run selenium tests and record video in three easy steps #
 
-1. Add [`headless`] [1] gem to test environment dependencies in your Gemfile
+1. Add [`headless`] [1] gem to test environment dependencies in your Gemfile:
 
         group :cucumber, :test do
           gem 'headless', '~> 0.2.1'
         end
 
-    Headless is a wrapper for [`Xvfb`][2] - X Window virtual frame buffer. Also it supports video capturing from virtual screen using `ffmpeg` utility
+    Headless is a wrapper for [`Xvfb`][2] - X Window virtual frame buffer. Also it supports video capturing from virtual screen using `ffmpeg` utility.
 
-2. Put this into `features/support` folder. I prefer to call this file headless.rb but you can name it yourself.
+2. Put this into `features/support` folder. I prefer to call this file headless.rb but you can name it yourself:
 
         if ENV['BUILD_NUMBER'].present?
           require 'headless'
@@ -52,7 +54,7 @@ title: Setting up Jenkins CI to run selenium tests and record video in three eas
 
 3.  Setup Jenkins to archive videos of failed tests:
 
-    Add this before step to remove files of previous tests run:
+    Add this before step to remove files of previous tests run (yes I'm lazy:):
 
     ![alt text](http://i.imgur.com/YsjPt.png "Jenkins before build step")
 
