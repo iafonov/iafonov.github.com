@@ -74,3 +74,7 @@ title: Setting up Jenkins CI to run selenium tests and record video in three eas
 [1]: https://github.com/leonid-shevtsov/headless        "headless"
 [2]: http://en.wikipedia.org/wiki/Xvfb        "Xvfb"
 [3]: http://iafonov.github.com        "Home"
+
+<script src="http://static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">clicky.init(252648);</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="http://in.getclicky.com/252648ns.gif" /></p></noscript>
