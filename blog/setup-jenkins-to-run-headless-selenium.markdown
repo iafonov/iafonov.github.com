@@ -5,7 +5,7 @@ title: Setting up Jenkins CI to run selenium tests and record video in three eas
 
 # Setting up Jenkins CI to run selenium tests and record video in three easy steps #
 
-1. Add [`headless`] [1] gem to test environment dependencies.
+1. Add [`headless`] [1] gem to test environment dependencies in your Gemfile
 
         group :cucumber, :test do
           gem 'headless', '~> 0.2.1'
@@ -50,7 +50,7 @@ title: Setting up Jenkins CI to run selenium tests and record video in three eas
 
         BUILD_NUMBER=1 bundle exec cucumber features/
 
-3.  Setup Jenkins to archive videos of failed tests.
+3.  Setup Jenkins to archive videos of failed tests:
 
     Add this before step to remove files of previous tests run:
 
