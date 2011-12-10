@@ -65,3 +65,14 @@ body a {
   background: transparent url("../images/twitter.ico") no-repeat;
   padding-left: 20px;
 }
+
+.flickr {
+  background: transparent url("../images/flickr.ico") no-repeat;
+  padding-left: 20px;
+  background-size: 16px 16px;
+}
+
+.github {
+  background: transparent url("../images/github.ico") no-repeat;
+  padding-left: 20px;
+}
