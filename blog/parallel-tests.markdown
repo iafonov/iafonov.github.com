@@ -1,9 +1,9 @@
 ---
-title: Running tests in parallel - utilize all your processor's cores to accelerate your development cycle
+title: Running tests in parallel - utilize all your processor cores to accelerate your development cycle
 ---
 <link href="../stylesheets/markdown.css" rel="stylesheet"></link>
 
-# Running tests in parallel &ndash; utilize all your processor's cores to accelerate your development cycle #
+# Running tests in parallel &ndash; utilize all your processor cores to accelerate your development cycle #
 
 [<< Back](http://iafonov.github.com/)
 
