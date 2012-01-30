@@ -11,14 +11,14 @@ title: Running tests in parallel - utilize all your processor's cores to acceler
 
 From my experience the main problem with a long running test suites is that team starts to simply ignore them. When you have to wait one hour between commit and deploy you'll probably switch your context and you'll start working on another task or simply forget about what you've been working on and after you'll get negative results you'll have to switch context back - and this leads to sometimes tremendous loss of productivity of the whole team. I think that the minimum acceptable time for running the full and complete test suite falls between 15-20 minutes. If the test suite is running for a longer time - it could be sign of a problem.
 
-Running tests in parallel is quite old and trivial idea but I was always very skeptical about it. I always thought that the cost of the maintenance of the testing environment for a small team without dedicated engineer will be significantly higher than the potential outcome. But when I've started using [`parallel_spec`](https://github.com/grosser/parallel_tests) gem I was really impressed by the ease of configuration and speedup I got without doing any significant changes in project's test suit.
+Running tests in parallel is quite old and trivial idea but I was always very skeptical about it. I thought that the cost of the maintenance of the testing environment for a small team without dedicated engineer will be significantly higher than the potential outcome. But when I've started using [`parallel_spec`](https://github.com/grosser/parallel_tests) gem I was really impressed by the ease of configuration and speedup I got without doing any significant changes in project's test suit.
 
 
 ## Speeding up specs
 
-Specs/unit-test suite is an ideal candidate for parallelizing. Tests are isolated, small and they have minimal memory footprint. In most cases you don't need to change anything to start running your tests in parallel. When I've started using `parallel_spec` the only thing I had to do was adding `parallel\_spec` gem to the Gemfile. After that all I had to do was reconfiguring CI to run `rake parallel:prepare parallel:spec` instead of usual spec runner. The transition was very easy and smooth. I haven't saw any kind of artifacts/random failures that were caused by running specs in parallel.
+Specs/unit-test suite is an ideal candidate for parallelizing. Tests are isolated, small and they have minimal memory footprint. In most cases you don't need to change anything to start running your tests in parallel. When I've started using `parallel_spec` the only thing I had to do was adding `parallel_spec` gem to the project's Gemfile. After that all I had to do was reconfiguring CI to run `rake parallel:prepare parallel:spec` instead of usual spec runner. The transition was very easy and smooth. I haven't saw any kind of artifacts/random failures that were caused by running specs in parallel.
 
-Steps to setup running specs in parallel:
+Here are steps to setup running specs in parallel:
 
 1. Add `parallel_spec` gem to test section of your Gemfile
 2. Run rake `parallel:create parallel:prepare parallel:spec`
@@ -54,7 +54,7 @@ As you can see the timings has decreased by 50% on my developer's machine but th
 
 ## Speeding up acceptance tests
 
-I'm a big fan of BDD and I'm using cucumber with selenium as a driver. I prefer selenium mostly because it drives a real browser which behaves as closely to the real customer environment as possible. But using real browser has some big downsides and one of the most significant is its performance. In a few words: it sucks. Selenium drives firefox which has quite significant memory footprint and it boots up very slowly. In the project I'm working on our acceptance test suite broke 20 minutes running time in several month and speeding it up was quite critical task.
+I'm a big fan of BDD and I'm using cucumber with selenium as a driver. I prefer selenium mostly because it drives a real browser which behaves as closely to the real customer environment as possible. But using real browser has some disadvantages and one of the most significant is - its performance. In a few words: it sucks. Selenium drives firefox which has quite significant memory footprint and it starts very slowly. In the project I'm working on our acceptance test suite broke 20 minutes running time in several month and speeding it up was quite critical task.
 
 Running features in parallel unlike specs requires some tweaking of your test suite. You should always remember that if you're running tests in parallel they should be isolated from each other. 
 
