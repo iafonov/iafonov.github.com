@@ -9,7 +9,7 @@ title: Running tests in parallel - utilize all your processor's cores to acceler
 
 ![alt text](wtf.png "WTF")
 
-From my experience the main problem with a long running test suites is that team starts to simply ignore them. When you have to wait one hour between commit and deploy you'll probably switch your context and you'll start working on another task or simply forget about what you've been working on and after you'll get negative results you'll have to switch context back - and this leads to sometimes tremendous loss of productivity of the whole team. I think that the minimum acceptable time for running the full and complete test suite falls between 15-20 minutes. If the test suite is running for a longer time - it could be sign of a problem.
+From my experience the main problem with a long running test suites is that team starts to simply ignore them. When you have to wait one hour between commit and deploy usually you switch your context and switching it forth and back could lead to lose of productivity. I think that the minimum acceptable time for running the full and complete test suite falls between 15-20 minutes. If the test suite is running for a longer time - it could be sign of a problem.
 
 Running tests in parallel is quite old and trivial idea but I was always very skeptical about it. I thought that the cost of the maintenance of the testing environment for a small team without dedicated engineer will be significantly higher than the potential outcome. But when I've started using [`parallel_spec`](https://github.com/grosser/parallel_tests) gem I was really impressed by the ease of configuration and speedup I got without doing any significant changes in project's test suit.
 
@@ -54,25 +54,23 @@ As you can see the timings has decreased by 50% on my developer's machine but th
 
 ## Speeding up acceptance tests
 
-I'm a big fan of BDD and I'm using cucumber with selenium as a driver. I prefer selenium mostly because it drives a real browser which behaves as closely to the real customer environment as possible. But using real browser has some disadvantages and one of the most significant is - its performance. In a few words: it sucks. Selenium drives firefox which has quite significant memory footprint and it starts very slowly. In the project I'm working on our acceptance test suite broke 20 minutes running time in several month and speeding it up was quite critical task.
+I'm a big fan of BDD and I'm using cucumber with selenium as a driver. Using real browser has disadvantages and one of the most significant is - its performance. Selenium drives firefox which has quite significant memory footprint. In the project I'm working on our acceptance test suite broke 20 minutes running time in 2 month and speeding it up was critical task.
 
-Running features in parallel unlike specs requires some tweaking of your test suite. You should always remember that if you're running tests in parallel they should be isolated from each other. 
+Running features in parallel unlike specs requires some tweaking of your test suite. You should always remember that if you're running tests in parallel they should be isolated from each other. To run features in parallel you'll have to consider the following changes:
 
-To run features set in parallel you'll have to consider the following changes:
-
-1. You have to setup capybara to spawn application server on different ports depending on `TEST_ENV_NUMBER` environment variable. This variable is set to different values depending on the thread and its main purpose is to allow you to isolate environments from each other:
+1. You have to setup capybara to spawn application server on different ports depending on `TEST_ENV_NUMBER` environment variable. This variable is set to different values depending on the process and its main purpose is to allow you to isolate environments from each other:
 
  
         SERVER_PORT = 10000 + ENV['TEST_ENV_NUMBER'].to_i
         Capybara.server_port = SERVER_PORT
 
-2. You have manually check and verify that your tests do not depend on shared files. For example in our application we are using [`email_spec`](https://github.com/bmabey/email-spec) to test emails and because of asynchronous nature of selenium tests we have to dump emails to file and then read it on a test side. But the fix is quite trivial - again we utilized `TEST_ENV_NUMBER` variable and put it to the name of the file so each process uses its own file to dump emails to.
+2. You have manually check and verify that your tests do not depend on shared resources. For example in our application we are using [`email_spec`](https://github.com/bmabey/email-spec) to test emails and because of asynchronous nature of selenium tests we have to dump emails to file and then read it on a test side. But the fix is quite trivial - again we utilized `TEST_ENV_NUMBER` variable and put it to the name of the file so each process uses its own file to dump emails to.
 
         DELIVERIES_PATH = File.join(RAILS_ROOT, "tmp", "deliveries#{ENV['TEST_ENV_NUMBER']}.cache")
 
 If you're using Rails 2 you'll have manually create a new delivery method for test purposes and put emails to a file. Here is [gist](https://gist.github.com/e224c4cf78102f44c498) with corresponding delivery method source code. With Rails 3 you can just use built-in `:file` delivery method which basically does the same thing.
 
-With cucumber tests, especially if you're using selenium you shouldn't expect linear speedup, the main reason for this is firefox - it's big, slow and unpredictable. You should be very careful with choosing concurrency level and watch RAM consumption of your tests, if tests will start hitting swap - you're in trouble, your tests could start failing randomly due to capybara timeouts. From our setup tests if you have dedicated CI server (and you should have it) you can calculate approximate level of concurrency by dividing available memory amount by 500M (Also remember that concurrency level must not exceed the number of available physical cores).
+With cucumber tests, especially if you're using selenium you shouldn't expect linear speedup, the main reason for this is firefox - it's big, slow and unpredictable. You should be very careful with choosing concurrency level and watch RAM consumption of your tests, if tests will start hitting swap - you're in trouble, your tests could start failing randomly due to unpredictable timeouts. If you have dedicated CI server (and you should have it) you can calculate approximate level of concurrency by dividing available memory amount by 500M.
 
 Here are some results I get during performance evaluation on my developer's machine and on dedicated CI server.
 
@@ -109,7 +107,7 @@ As you can see going from 1 to 4 cores gives significant speed up. Using 8 cores
 
 Parallelizing you test suite could be a good way to improve timings but at the same time it is only extensive way of optimization, if you want intensively optimize your test suite you have to consider other techniques that require more effort to complete but offer much better outcome. 
 
-There are several ways to do it for specs & unit tests - you can go from doing 'true' isolated model tests that do not hit the database to tests that have enough isolation level to don't even require hitting Rails application stack.
+There are several ways to do it. For unit tests - you can go from doing 'true' isolated model tests that do not hit the database to tests that have enough isolation level to don't even require Rails application stack.
 
 For functional tests you can consider using things like `capybara-webkit` or `rack-test` but in my opinion with getting performance advantage you would lose the filling of tests that are as realistic as users interaction is. Before we moved to `selenium` we used `HtmlUnit` for user interaction simulation and several times we had problems with test that passes but real user wasn't able to do the same thing. The canonical example for such thing is overlays blocking user input. Things like HtmlUnit/rack-test wouldn't be able to figure it out and will click on the element even if it is hidden from the user, selenium in this case will throw an exception and you would be able to notice problem earlier than it goes into production. Also one cool thing about selenium - you can record a video of tests even on headless machine and later you would be able to use this video for problems diagnosis (See more about this topic [here](http://iafonov.github.com/blog/setup-jenkins-to-run-headless-selenium.html)).
 
