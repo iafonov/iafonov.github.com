@@ -113,7 +113,7 @@ There are several ways to do it for specs & unit tests - you can go from doing '
 
 For functional tests you can consider using things like `capybara-webkit` or `rack-test` but in my opinion with getting performance advantage you would lose the filling of tests that are as realistic as users interaction is. Before we moved to `selenium` we used `HtmlUnit` for user interaction simulation and several times we had problems with test that passes but real user wasn't able to do the same thing. The canonical example for such thing is overlays blocking user input. Things like HtmlUnit/rack-test wouldn't be able to figure it out and will click on the element even if it is hidden from the user, selenium in this case will throw an exception and you would be able to notice problem earlier than it goes into production. Also one cool thing about selenium - you can record a video of tests even on headless machine and later you would be able to use this video for problems diagnosis (See more about this topic [here](http://iafonov.github.com/blog/setup-jenkins-to-run-headless-selenium.html)).
 
-[<< Back][3]
+[<< Back](http://iafonov.github.com/)
 
 <div id="disqus_thread"></div>
 <script src="http://static.getclicky.com/js" type="text/javascript"></script>
