@@ -101,13 +101,13 @@ Here are some results I get during performance evaluation on my developer's mach
   </tr>
 </table>
 
-As you can see going from 1 to 4 cores gives significant speed up. Using 8 cores even if they are available isn't really needed because the main bottleneck is RAM amount and performance. Note how transition from desktop to dedicated server increases performance. Also running tests in parallel on your development machine will basically make it unusable so it is not a good practice.
+As you can see going from 1 to 4 cores gives significant speed up. Using 8 cores, even if they are available, isn't really needed because the main bottleneck is memory amount and performance. Note how transition from desktop to dedicated server increases performance.
 
 ## Some conclusions
 
-Parallelizing you test suite could be a good way to improve timings but at the same time it is only extensive way of optimization, if you want intensively optimize your test suite you have to consider other techniques that require more effort to complete but offer much better outcome. 
+Parallelizing you test suite could be a good way to improve timings but at the same time it's only extensive way of optimization, if you want intensively optimize your test suite you have to consider other techniques that require more effort to complete but offer much better outcome. 
 
-There are several ways to do it. For unit tests - you can go from doing 'true' isolated model tests that do not hit the database to tests that have enough isolation level to don't even require Rails application stack.
+For unit tests you can go from doing 'true' isolated model tests that do not hit the database to tests that have enough isolation level to not even require Rails application stack.
 
 For functional tests you can consider using things like `capybara-webkit` or `rack-test` but in my opinion with getting performance advantage you would lose the filling of tests that are as realistic as users interaction is. Before we moved to `selenium` we used `HtmlUnit` for user interaction simulation and several times we had problems with test that passes but real user wasn't able to do the same thing. The canonical example for such thing is overlays blocking user input. Things like HtmlUnit/rack-test wouldn't be able to figure it out and will click on the element even if it is hidden from the user, selenium in this case will throw an exception and you would be able to notice problem earlier than it goes into production. Also one cool thing about selenium - you can record a video of tests even on headless machine and later you would be able to use this video for problems diagnosis (See more about this topic [here](http://iafonov.github.com/blog/setup-jenkins-to-run-headless-selenium.html)).
 
