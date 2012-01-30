@@ -107,7 +107,7 @@ As you can see going from 1 to 4 cores gives significant speed up. Using 8 cores
 
 ## Some conclusions
 
-Parallelizing you test suite could be a good way to improve timings but at the same time it is only extensive way of optimization, if you want intensively optimize your test suite you have to consider other techniques that requires more effort to complete but offers much better outcome. 
+Parallelizing you test suite could be a good way to improve timings but at the same time it is only extensive way of optimization, if you want intensively optimize your test suite you have to consider other techniques that require more effort to complete but offer much better outcome. 
 
 There are several ways to do it for specs & unit tests - you can go from doing 'true' isolated model tests that do not hit the database to tests that have enough isolation level to don't even require hitting Rails application stack.
 
