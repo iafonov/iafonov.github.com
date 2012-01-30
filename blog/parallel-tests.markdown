@@ -9,9 +9,9 @@ title: Running tests in parallel - utilize all your processor's cores to acceler
 
 ![alt text](wtf.png "WTF")
 
-From my experience the main problem with a long running test suites is that team starts to simply ignore them. When you have to wait one hour between commit and deploy usually you switch your context and switching it forth and back could lead to lose of productivity. I think that the minimum acceptable time for running the full and complete test suite falls between 15-20 minutes. If the test suite is running for a longer time - it could be sign of a problem.
+From my experience the main problem with long running test suites is that team starts to simply ignore them. When you have to wait one hour between commit and deploy usually you switch your context and switching it forth and back could lead to lose of productivity. I think that the minimum acceptable time for running the full and complete test suite falls between 15-20 minutes. If the test suite is running for a longer time - it could be sign of a problem.
 
-Running tests in parallel is quite old and trivial idea but I was always very skeptical about it. I thought that the cost of the maintenance of the testing environment for a small team without dedicated engineer will be significantly higher than the potential outcome. But when I've started using [`parallel_spec`](https://github.com/grosser/parallel_tests) gem I was really impressed by the ease of configuration and speedup I got without doing any significant changes in project's test suit.
+Running tests in parallel is quite old and trivial idea but I've been always very skeptical about it. I thought that the cost of the maintenance of the testing environment for a small team without a dedicated engineer will be significantly higher than the potential outcome. But when I've started using [`parallel_spec`](https://github.com/grosser/parallel_tests) gem I was really impressed by the ease of configuration and speedup I got without doing any significant changes in project's test suite.
 
 
 ## Speeding up specs
