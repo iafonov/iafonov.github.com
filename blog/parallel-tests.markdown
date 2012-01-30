@@ -7,7 +7,7 @@ title: Running tests in parallel - utilize all your processor's cores to acceler
 
 [<< Back](http://iafonov.github.com/)
 
-    ![alt text](wtf.png "WTF")
+![alt text](wtf.png "WTF")
 
 From my experience the main problem with a long running test suites is that team starts to simply ignore them. When you have to wait one hour between commit and deploy you'll probably switch your context and you'll start working on another task or simply forget about what you've been working on and after you'll get negative results you'll have to switch context back - and this leads to sometimes tremendous loss of productivity of the whole team. I think that the minimum acceptable time for running the full and complete test suite falls between 15-20 minutes. If the test suite is running for a longer time - it could be sign of a problem.
 
