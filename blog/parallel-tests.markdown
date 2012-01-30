@@ -16,14 +16,14 @@ Running tests in parallel is quite old and trivial idea but I was always very sk
 
 ## Speeding up specs
 
-Specs/unit-test suite is an ideal candidate for parallelizing. Tests are isolated, small and they have minimal memory footprint. In most cases you don't need to change anything to start running your tests in parallel. When I've started using `parallel_spec` the only thing I had to do was adding `parallel_spec` gem to the project's Gemfile. After that all I had to do was reconfiguring CI to run `rake parallel:prepare parallel:spec` instead of usual spec runner. The transition was very easy and smooth. I haven't saw any kind of artifacts/random failures that were caused by running specs in parallel.
+Unit test suite is an ideal candidate for parallelizing. Tests are isolated, small and they have minimal memory footprint. In most cases you don't need to change anything to start running your tests in parallel. When I've started using `parallel_spec` the only thing I had to do was adding `parallel_spec` gem to the project's Gemfile. After that all I had to do was reconfiguring CI to run `rake parallel:prepare parallel:spec` instead of usual spec runner. The transition was very easy and smooth. I haven't saw any kind of artifacts or random failures that were caused by running specs in parallel.
 
 Here are steps to setup running specs in parallel:
 
 1. Add `parallel_spec` gem to test section of your Gemfile
 2. Run rake `parallel:create parallel:prepare parallel:spec`
 
-You can control number of cores used by tests by supplying number in square brackets after each rake task invocation command. Note if you're using `zsh` as I do you'll have to put command in quotation marks like this `rake "parallel:spec[4]"`
+You can control number of cores used by tests by supplying number in square brackets after each rake task invocation command. Note if you're using `zsh` as I do, you'll have to put command in quotation marks like this `rake "parallel:spec[4]"`
 
 Here is some benchmarks that I got on our project spec's suite:
 
