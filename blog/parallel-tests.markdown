@@ -30,23 +30,23 @@ Here is some benchmarks that I got on our project spec's suite:
 <table>
   <tr>
     <th>Environment</th>
-    <th>Time (seconds)</th>
+    <th>Time</th>
   </tr>
   <tr>
     <td>1 CPU (Mac OS X 10.7, Intel Core i5 3GHz)</td>
-    <td>278</td>
+    <td>4m 37s</td>
   </tr>
   <tr>
     <td>2 CPUs (Mac OS X 10.7, Intel Core i5 3GHz)</td>
-    <td>200</td>
+    <td>3m 20s</td>
   </tr>
   <tr>
     <td>4 CPUs (Mac OS X 10.7, Intel Core i5 3GHz)</td>
-    <td>140</td>
+    <td>2m 20s</td>
   </tr>
   <tr>
     <td>4 CPUs (Ubuntu 10.10, Intel Xeon 2.27GHz with 8M cache per core, VPS)</td>
-    <td>111</td>
+    <td>1m 51s</td>
   </tr>
 </table>
 
