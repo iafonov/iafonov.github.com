@@ -20,7 +20,7 @@ Unit test suite is an ideal candidate for parallelizing. Tests are isolated, sma
 
 Here are steps to setup running specs in parallel:
 
-1. Add `parallel_spec` gem to test section of your Gemfile
+1. Add `parallel_tests` gem to development section of your Gemfile
 2. Run rake `parallel:create parallel:prepare parallel:spec`
 
 You can control number of cores used by tests by supplying number in square brackets after each rake task invocation command. Note if you're using `zsh` as I do, you'll have to put command in quotation marks like this `rake "parallel:spec[4]"`
