@@ -1,10 +1,11 @@
 ---
 title: Running tests in parallel - utilize all your processor cores to accelerate your development cycle
 layout: post
-post_date: 29 Jan 2012
 ---
 
 # Running tests in parallel &ndash; utilize all your processor cores to accelerate your development cycle #
+
+<div class="date">[29 Jan 2012]</div>
 
 ![alt text](wtf.png "WTF")
 
