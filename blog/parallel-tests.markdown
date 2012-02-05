@@ -1,11 +1,9 @@
 ---
 title: Running tests in parallel - utilize all your processor cores to accelerate your development cycle
+layout: post
 ---
-<link href="../stylesheets/markdown.css" rel="stylesheet"></link>
 
 # Running tests in parallel &ndash; utilize all your processor cores to accelerate your development cycle #
-
-[<< Back](http://iafonov.github.com/)
 
 ![alt text](wtf.png "WTF")
 
@@ -110,27 +108,3 @@ Parallelizing you test suite could be a good way to improve timings but at the s
 For unit tests you can go from doing 'true' isolated model tests that do not hit the database to tests that have enough isolation level to not even require Rails application stack.
 
 For functional tests you can consider using things like `capybara-webkit` or `rack-test` but in my opinion with getting performance advantage you would lose the feeling of tests that are as realistic as users interaction is. Before we moved to `selenium` we used `HtmlUnit` for user interaction simulation and several times we had problems with test that passes but real user wasn't able to do the same thing. The canonical example for such thing is overlays blocking user input. Things like HtmlUnit/rack-test wouldn't be able to figure it out and will click on the element even if it is hidden from the user, selenium in this case will throw an exception and you would be able to notice problem earlier than it goes into production. Also one cool thing about selenium - you can record a video of tests even on headless machine and later you would be able to use this video for problems diagnosis (See more about this topic [here](http://iafonov.github.com/blog/setup-jenkins-to-run-headless-selenium.html)).
-
-[<< Back](http://iafonov.github.com/)
-
-<div id="disqus_thread"></div>
-<script src="http://static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">clicky.init(252648);</script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="http://in.getclicky.com/252648ns.gif" /></p></noscript>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'iafonov'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-
-<script src="http://static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">clicky.init(252648);</script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="http://in.getclicky.com/252648ns.gif" /></p></noscript>
