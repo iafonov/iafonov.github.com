@@ -36,6 +36,11 @@ body a {
   padding-left: 20px;
 }
 
+#talks {
+  padding: 0px;
+  padding-left: 20px;
+}
+
 .skype {
   background: transparent url("../images/skype.ico") no-repeat;
   padding-left: 20px;
