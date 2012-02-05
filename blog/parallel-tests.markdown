@@ -1,6 +1,7 @@
 ---
 title: Running tests in parallel - utilize all your processor cores to accelerate your development cycle
 layout: post
+date: 29 Jan 2012
 ---
 
 # Running tests in parallel &ndash; utilize all your processor cores to accelerate your development cycle #

@@ -1,6 +1,7 @@
 ---
 title: Setting up Jenkins CI to run selenium tests and record video in three easy steps
 layout: post
+date: 2 Sep 2011
 ---
 
 # Setting up Jenkins CI to run selenium tests and record video in three easy steps #
