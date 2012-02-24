@@ -26,7 +26,9 @@ The basic question that any email receiving server should answer when it gets em
 
 ### IP's PTR record
 
-<a name="ptr"></a>
+<a name="ptr">
+	
+</a>
 
 PTR record allows one to do a reverse lookup of IP address and find the domain bind to this IP address. This is the most trivial thing every mail server can do to ensure that the email was sent from your domain. You should setup it for an IP address of your server that sends emails. It should look like this:
 
