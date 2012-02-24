@@ -10,14 +10,14 @@ layout: post
 In this article you will get a brief overview of things you can do to increase the quality of email subsystem of your application.
 
 * Preliminary one-time infrastructure setup
-		* [IP's PTR Record](#ptr)
-		* [Domain's SPF record](#spf)
-    * [DKIM keys](#dkim)
-    * [Validating setup programmatically](#validation)
+	* [IP's PTR Record](#ptr)
+	* [Domain's SPF record](#spf)
+	* [DKIM keys](#dkim)
+	* [Validating setup programmatically](#validation)
 * On-going support
-    * [Handling bounces](#bounces)
-    * [Handling bounces with Ruby on Rails](#bounces_rails)
-    * [Parsing MTA logs](#parsing)
+	* [Handling bounces](#bounces)
+	* [Handling bounces with Ruby on Rails](#bounces_rails)
+	* [Parsing MTA logs](#parsing)
 * What else to do
 
 ## Preliminary infrastructure setup
@@ -112,6 +112,8 @@ To setup Postfix MTA to sign your emails you can follow this steps (Other MTAs w
 The easiest way to verify setup is to send an email to any Gmail account and then take a look into original message. Gmail will explicitly show the result of DKIM check.
 
 <a name="validation">
+	
+</a>
 
 ### Validating your setup programmatically
 
