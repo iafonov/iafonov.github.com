@@ -10,14 +10,14 @@ layout: post
 In this article you will get a brief overview of things you can do to increase the quality of email subsystem of your application.
 
 * Preliminary one-time infrastructure setup
-* <a href="#ptr">IP's PTR Record</a>
-* <a href="#spf">Domain's SPF record</a>
-* <a href="#dkim">DKIM keys</a>
-* <a href="#validation">Validating setup programmatically</a>
+		* [IP's PTR Record](#ptr)
+		* [Domain's SPF record](#spf)
+    * [DKIM keys](#dkim)
+    * [Validating setup programmatically](#validation)
 * On-going support
-* <a href="#bounces">Handling bounces</a>
-* <a href="#bounces_rails">Handling bounces with Ruby on Rails</a>
-* <a href="#parsing">Parsing MTA logs</a>
+    * [Handling bounces](#bounces)
+    * [Handling bounces with Ruby on Rails](#bounces_rails)
+    * [Parsing MTA logs](#parsing)
 * What else to do
 
 ## Preliminary infrastructure setup
