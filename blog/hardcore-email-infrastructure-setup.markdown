@@ -24,7 +24,9 @@ In this article you will get a brief overview of things you can do to increase t
 
 The basic question that any email receiving server should answer when it gets email sounds like this: ok, I got an email from this IP and it claims that is was sent from this domain, is it true? There are several ways to check it and usually it's better to satisfy all of this checks because they are executed one by one in the same order they are presented here. Failing one check will lead to failing the whole chain and removing email sent by your application from mailbox.
 
-### <a name="ptr" />IP's PTR record
+### IP's PTR record
+
+<a name="ptr"></a>
 
 PTR record allows one to do a reverse lookup of IP address and find the domain bind to this IP address. This is the most trivial thing every mail server can do to ensure that the email was sent from your domain. You should setup it for an IP address of your server that sends emails. It should look like this:
 
