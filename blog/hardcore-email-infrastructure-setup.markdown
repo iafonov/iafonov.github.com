@@ -13,10 +13,10 @@ In this article you will get a brief overview of things you can do to increase t
 	* [IP's PTR Record](#ptr)
 	* [Domain's SPF record](#spf)
 	* [DKIM keys](#dkim)
-	* [Validating setup programmatically](#validation)
+	* [Validating setup programmatically with Ruby](#validation)
 * On-going support
 	* [Handling bounces](#bounces)
-	* [Handling bounces with Ruby on Rails](#bounces_rails)
+	* [Handling bounces with Ruby](#bounces_rails)
 	* [Parsing MTA logs](#parsing)
 * What else to do
 
@@ -53,10 +53,10 @@ In plain english it means: allow emails sent from 207.97.227.239 and reject othe
 
 For more advanced usage you'll have to understand the basics of SPF. It consists of two main components: mechanisms and qualifiers. Mechanism is a way of finding ip addresses. There are several built-in mechanisms: like listing ip addresses one by one or specifying DNS record from which this addresses should be fetched. Qualifier specifies the action that should be taken on email sent from address fetched by mechanism. There are 4 available:
 
-* `+` - accept, this is default prefix, so it can be omitted
-* `-` - reject, the server will not even fetch the body of email sent from prefixed address
-* `?` - neutral, the mail server could decide itself whether it should reject message, mark it as spam or ignore check
-* `~` - soft-fail, email would be accepted but marked as spam
+`+` - accept, this is default prefix, so it can be omitted<br />
+`-` - reject, the server will not even fetch the body of email sent from prefixed address<br />
+`?` - neutral, the mail server could decide itself whether it should reject message, mark it as spam or ignore check<br />
+`~` - soft-fail, email would be accepted but marked as spam<br />
 
 One important thing that you should understand about SPF check is that it's performed *before* receiving the message body, so if message got rejected - the mail server will not even fetch your message body and won't advance with further checks.
 
@@ -115,7 +115,7 @@ The easiest way to verify setup is to send an email to any Gmail account and the
 	
 </a>
 
-### Validating your setup programmatically
+### Validating setup programmatically with Ruby
 
 If you need to validate setup programmatically within your application you can go with [`domain_info`](https://github.com/iafonov/domain_info) ruby gem. It was created specifically for the purposes of validating email infrastructure setup. It features simple and straightforward interface and doesn't have any external dependencies. 
 
