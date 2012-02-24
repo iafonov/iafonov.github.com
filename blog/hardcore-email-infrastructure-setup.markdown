@@ -198,7 +198,7 @@ If you're running rails application you can read emails either by setting up rec
 
 If postfix can't deliver email usually it would put it into its [deferred queue](http://www.postfix.org/QSHAPE_README.html#deferred_queue) and say something in log (usually `/var/log/mail.info`). Parsing logs could be supplementary task to handling bounces.
 
-		Feb 24 07:03:33 server postfix/smtp[16521]: AE7E2BEC401: to=<typo@hot-mail.com>, relay=none, delay=95123, delays=95095/0.09/28/0, dsn=4.4.3, status=deferred (Host or domain name not found. Name service error for name=hot-mail.com type=MX: Host not found, try again)
+		![alt text](http://i.imgur.com/xHx4S.png "Postfix logentry example")
 
 ## What else to do
 
