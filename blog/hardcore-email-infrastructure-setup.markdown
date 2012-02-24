@@ -10,21 +10,21 @@ layout: post
 In this article you will get a brief overview of things you can do to increase the quality of email subsystem of your application.
 
 * Preliminary one-time infrastructure setup
-    * <a href="#ptr">IP's PTR Record</a>
-    * <a href="#spf">Domain's SPF record</a>
-    * <a href="#dkim">DKIM keys</a>
-    * <a href="#validation">Validating setup programmatically</a>
+* <a href="#ptr">IP's PTR Record</a>
+* <a href="#spf">Domain's SPF record</a>
+* <a href="#dkim">DKIM keys</a>
+* <a href="#validation">Validating setup programmatically</a>
 * On-going support
-    * <a href="#bounces">Handling bounces</a>
-    * <a href="#bounces_rails">Handling bounces with Ruby on Rails</a>
-    * <a href="#parsing">Parsing MTA logs</a>
+* <a href="#bounces">Handling bounces</a>
+* <a href="#bounces_rails">Handling bounces with Ruby on Rails</a>
+* <a href="#parsing">Parsing MTA logs</a>
 * What else to do
 
 ## Preliminary infrastructure setup
 
 The basic question that any email receiving server should answer when it gets email sounds like this: ok, I got an email from this IP and it claims that is was sent from this domain, is it true? There are several ways to check it and usually it's better to satisfy all of this checks because they are executed one by one in the same order they are presented here. Failing one check will lead to failing the whole chain and removing email sent by your application from mailbox.
 
-### <a name="ptr"></a>IP's PTR record
+### <a name="ptr" />IP's PTR record
 
 PTR record allows one to do a reverse lookup of IP address and find the domain bind to this IP address. This is the most trivial thing every mail server can do to ensure that the email was sent from your domain. You should setup it for an IP address of your server that sends emails. It should look like this:
 
@@ -35,7 +35,7 @@ You can validate this setup using standard unix `dig` utility
     $ dig +short -x [your ip]
     your-domain.com.
 
-### <a name="spf"></a>Domain's SPF record
+### <a name="spf" />Domain's SPF record
 
 SPF (Sender Policy Framework) record allows listing trusted IP addresses that could send emails under the name of your domain and provide set of rules to email server on how to deal with failed ones. SPF uses its own macrolanguage and could look cryptic, but under the hood it's really simple and smart thing. SPF record goes to TXT record of your domain[*](#spf_record) and mail server will fetch it from there (that's why you have to setup PTR record correctly). The simplest and most common example could look like this:
 
@@ -66,7 +66,7 @@ In this case you can manage your email policies from one place and other domains
 
 If you want to dive deeper I recommend you to take a look into [SPF record syntax specification](http://www.openspf.net/SPF_Record_Syntax).
 
-### <a name="dkim"></a>DKIM (DomainKeys Identified Mail)
+### <a name="dkim" />DKIM (DomainKeys Identified Mail)
 
 DKIM is the most powerful method to avoid false spam fails. Unlike SPF method it checks the email body and headers for integrity and correctness. In a few words it works the following way:
 
@@ -99,7 +99,7 @@ To setup Postfix MTA to sign your emails you can follow this steps (Other MTAs w
 
 The easiest way to verify setup is to send an email to any Gmail account and then take a look into original message. Gmail will explicitly show the result of DKIM check.
 
-### <a name="validation"></a>Validating your setup programmatically
+### <a name="validation" />Validating your setup programmatically
 
 If you need to validate setup programmatically within your application you can go with [`domain_info`](https://github.com/iafonov/domain_info) ruby gem. It was created specifically for the purposes of validating email infrastructure setup. It features simple and straightforward interface and doesn't have any external dependencies. 
 
@@ -128,7 +128,7 @@ If you need to validate setup programmatically within your application you can g
 
 
 
-### <a name="bounces"></a>Handling bounces
+### <a name="bounces" />Handling bounces
 
 Bounce is an automatically generated email send to you by one of relaying email servers when delivery can't be performed or something went wrong during delivery. You can think of them as an exceptions in programming. Bounces are delivered to the address extracted from `return-path` header of original email. Automated processing of bounces is quite critical task if you're doing mass email newsletter sending because of the following reasons:
 
@@ -144,7 +144,7 @@ To setup your infrastructure to handle bounces you'll have to do the following s
 
 For the most situations just the fact that you've received bounce means that you shouldn't continue sending emails to this address, but strictly speaking you can parse bounce email and get the reason of the bounce. Bounces usually fall into two categories soft bounces and hard bounces. Hard bounce means that email address you're trying to send email is invalid. With soft bounces you can try to send email later but in practice soft bounces are very rare and in most cases it's easier to treat them as hard bounces.
 
-### <a name="bounces_rails"></a>Handling bounces with Ruby
+### <a name="bounces_rails" />Handling bounces with Ruby
 
 If you're running rails application you can read emails either by setting up receive method in mailer class or do processing manually. Setting up callback isn't a good idea if you're sending a lot of emails because to process every email a new instance of application will be spawned which could easily kill performance. I recommend to go with background job and manually process bounces. Here is a snippet of code that could be used to process bounce mailbox:
 
@@ -167,7 +167,7 @@ If you're running rails application you can read emails either by setting up rec
       # extract token from string like 26027b62de9ba2ac500fe0a66002d7f1@e.yourdomain.com
     end
 
-### <a name="parsing"></a>Parsing MTA log
+### <a name="parsing" />Parsing MTA log
 
 If postfix can't deliver email usually it would put it into its [deferred queue](http://www.postfix.org/QSHAPE_README.html#deferred_queue) and say something in log (usually `/var/log/mail.info`). Parsing logs could be supplementary task to handling bounces.
 
