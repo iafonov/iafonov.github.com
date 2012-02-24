@@ -198,7 +198,7 @@ If you're running rails application you can read emails either by setting up rec
 
 If postfix can't deliver email usually it would put it into its [deferred queue](http://www.postfix.org/QSHAPE_README.html#deferred_queue) and say something in log (usually `/var/log/mail.info`). Parsing logs could be supplementary task to handling bounces.
 
-		![alt text](http://i.imgur.com/xHx4S.png "Postfix logentry example")
+![alt text](http://i.imgur.com/xHx4S.png "Postfix logentry example")
 
 ## What else to do
 
