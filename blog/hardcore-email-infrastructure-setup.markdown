@@ -5,6 +5,8 @@ layout: post
 
 # Email infrastructure setup guide
 
+<div class="date">[02 Mar 2012]</div>
+
 *Disclaimer: this article will help you ensure that your 'good' emails will not get into spam folder. If you are sending junk emails with viagra advertisement sooner or later you'll get in trouble anyway.*
 
 In this article you will get a brief overview of things you can do to increase the quality of email subsystem of your application.
@@ -18,6 +20,7 @@ In this article you will get a brief overview of things you can do to increase t
 	* [Handling bounces](#bounces)
 	* [Handling bounces with Ruby](#bounces_rails)
 	* [Parsing MTA logs](#parsing)
+	* [Throttling delivery rate with postfix](#throttling)
 * What else to do
 
 ## Preliminary infrastructure setup
@@ -199,6 +202,38 @@ If you're running rails application you can read emails either by setting up rec
 If postfix can't deliver email usually it would put it into its [deferred queue](http://www.postfix.org/QSHAPE_README.html#deferred_queue) and say something in log (usually `/var/log/mail.info`). Parsing logs could be supplementary task to handling bounces.
 
 ![alt text](http://i.imgur.com/xHx4S.png "Postfix logentry example")
+
+Also it could be a very useful thing if you have to debug problems with email delivery to certain addresses.
+
+![alt text](http://i.imgur.com/mRKRC.png "Postfix oops")
+
+<a name="throttling">
+
+</a>
+
+### Throttling delivery rate with postfix
+
+Some big email providers don't like receiving emails from one IP with a high frequency. This case could be solved either by parallelizing your infrastructure or if you don't deliver a lot of emails to such servers you can throttle delivery rate specifically for them with postfix.
+
+1. Add a new service in master.cf which should be exact copy of smtpd service but with limited concurrency level (`maxproc`)
+
+		# ==========================================================================
+		# service type  private unpriv  chroot  wakeup  maxproc command + args
+		#               (yes)   (yes)   (yes)   (never) (100)
+		# ==========================================================================
+		smtp      unix   -       -       -       -       -       smtp
+		throttle  unix   -       -       -       -       1       smtp
+
+2. Add throttled domains to transports and set delivery service to `throttle`
+
+		orange.fr    throttle:
+		wanadoo.fr   throttle:
+
+3. Add the following entries to main.cf configuration file. If sending in one thread is not enough you can additionally set `destination_rate_delay` for a delivery service
+
+		# throttling emails to orange.fr, wanadoo.fr
+		transport_maps = hash:/etc/postfix/transport
+		throttle_destination_rate_delay = 1s
 
 ## What else to do
 
