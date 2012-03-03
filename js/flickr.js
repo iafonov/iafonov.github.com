@@ -15,7 +15,7 @@ function buildFlickrFeed(data) {
 }
 
 function getSetsList() {
-  $.ajax({ url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=c9b91c121a6afea72da6ff022bed1277&user_id=31344372%40N03&format=json&jsoncallback=buildFlickrFeed",
+  $.ajax({ url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=f6eaf319ebfea38373927273fc9fab61&user_id=31344372%40N03&format=json&jsoncallback=buildFlickrFeed",
            dataType: 'jsonp' });
 }
     
