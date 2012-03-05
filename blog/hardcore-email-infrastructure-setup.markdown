@@ -48,7 +48,7 @@ You can validate this setup using standard unix `dig` utility
 
 ### Domain's SPF record
 
-SPF (Sender Policy Framework) record allows listing trusted IP addresses that could send emails under the name of your domain and provide set of rules to email server on how to deal with failed ones. SPF uses its own macrolanguage and could look cryptic, but under the hood it's really simple and smart thing. SPF record goes to TXT record of your domain[*](#spf_record) and mail server will fetch it from there (that's why you have to setup PTR record correctly). The simplest and most common example could look like this:
+SPF (Sender Policy Framework) record allows listing trusted IP addresses that could send emails under the name of your domain and provide set of rules to email server on how to deal with failed ones. SPF uses its own macrolanguage and could look cryptic, but under the hood it's really simple and smart thing. SPF record goes to TXT record of your domain and mail server will fetch it from there (that's why you have to setup PTR record correctly). The simplest and most common example could look like this:
 
     v=spf1 ip4:207.97.227.239 -all
 

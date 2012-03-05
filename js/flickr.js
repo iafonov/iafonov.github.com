@@ -1,5 +1,5 @@
 function addLinkToSets(set) {
-  var title = set.title._content
+  var title = set.title._content;
 
   if (title.indexOf("Other") != 0) {
     var link = "http://www.flickr.com/photos/iafonov/sets/" + set.id + "/";
