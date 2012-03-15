@@ -11,17 +11,17 @@ layout: post
 
 In this article you will get a brief overview of things you can do to increase the quality of email subsystem of your application.
 
-* Preliminary one-time infrastructure setup
+* [Preliminary one-time infrastructure setup](#ptr)
 	* [IP's PTR Record](#ptr)
 	* [Domain's SPF record](#spf)
 	* [DKIM keys](#dkim)
 	* [Validating setup programmatically with Ruby](#validation)
-* On-going support
+* [On-going support](#bounces)
 	* [Handling bounces](#bounces)
 	* [Handling bounces with Ruby](#bounces_rails)
 	* [Parsing MTA logs](#parsing)
 	* [Throttling delivery rate with postfix](#throttling)
-* What else to do
+* [What else to do](else)
 
 ## Preliminary infrastructure setup
 
@@ -234,6 +234,10 @@ Some big email providers don't like receiving emails from one IP with a high fre
 		# throttling emails to orange.fr, wanadoo.fr
 		transport_maps = hash:/etc/postfix/transport
 		throttle_destination_rate_delay = 1s
+
+<a name="else">
+
+</a>
 
 ## What else to do
 
