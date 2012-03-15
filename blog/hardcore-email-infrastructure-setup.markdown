@@ -11,17 +11,17 @@ layout: post
 
 In this article you will get a brief overview of things you can do to increase the quality of email subsystem of your application.
 
-* [Preliminary one-time infrastructure setup](#ptr)
-	* [IP's PTR Record](#ptr)
-	* [Domain's SPF record](#spf)
-	* [DKIM keys](#dkim)
-	* [Validating setup programmatically with Ruby](#validation)
-* [On-going support](#bounces)
-	* [Handling bounces](#bounces)
-	* [Handling bounces with Ruby](#bounces_rails)
-	* [Parsing MTA logs](#parsing)
-	* [Throttling delivery rate with postfix](#throttling)
-* [What else to do](else)
+* <b><i>[Preliminary one-time infrastructure setup](#ptr)</i></b>
+* [IP's PTR Record](#ptr)
+* [Domain's SPF record](#spf)
+* [DKIM keys](#dkim)
+* [Validating setup programmatically with Ruby](#validation)
+* <b><i>[On-going support](#bounces)</i></b>
+* [Handling bounces](#bounces)
+* [Handling bounces with Ruby](#bounces_rails)
+* [Parsing MTA logs](#parsing)
+* [Throttling delivery rate with postfix](#throttling)
+* <b><i>[What else to do](else)</i></b>
 
 ## Preliminary infrastructure setup
 
