@@ -7,6 +7,8 @@ layout: post
 
 <div class="date">[02 Mar 2012]</div>
 
+<i><a href="http://news.ycombinator.com/item?id=3708489">discussion on Hacker News</a></i>
+
 *Disclaimer: this article will help you ensure that your 'good' emails will not get into spam folder. If you are sending junk emails with viagra advertisement sooner or later you'll get in trouble anyway.*
 
 In this article you will get a brief overview of things you can do to increase the quality of email subsystem of your application.
