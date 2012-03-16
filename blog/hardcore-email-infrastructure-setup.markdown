@@ -103,7 +103,7 @@ To setup Postfix MTA to sign your emails you can follow this steps (Other MTAs w
 
         $ dkim-genkey -d your-domain.com -s your-domain.com -r
 
-4. Tell `dkim-filter` to sign emails that goes from specified domain
+4. Tell `dkim-filter` to sign emails that goes from specified domain by putting the following entry into the keylist file. (You can find its location in `/etc/dkim-filter.conf`)
 
         *@your-domain.com:your-domain.com:/etc/postfix/dkim/your-domain.com
 
