@@ -6,7 +6,7 @@ layout: post
 # Email infrastructure setup guide
 
 <div class="date">[02 Mar 2012]</div>
-
+<br />
 <i><a href="http://news.ycombinator.com/item?id=3708489">discussion on Hacker News</a></i>
 
 *Disclaimer: this article will help you ensure that your 'good' emails will not get into spam folder. If you are sending junk emails with viagra advertisement sooner or later you'll get in trouble anyway.*
