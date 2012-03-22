@@ -9,9 +9,9 @@ layout: post
 
 ## The problem
 
-I'm using [Opscode chef](http://www.opscode.com/chef/) for managing and automation of rails application infrastructure. Currently we have 5 application shards and several auxiliary nodes for staging/CI purposes. As our infrastructure grows we started experiencing regression problems. When you have one node and something goes wrong you can quickly ssh to it and fix it manually - but when you do a deployment to 5 nodes simultaneously and something goes wrong - that could be a huge problem.
+I'm using [Opscode chef](http://www.opscode.com/chef/) for managing and automation of rails application infrastructure. Currently we have 5 application shards and several auxiliary nodes for staging/CI purposes. As our infrastructure is constantly growing we started experience regression problems. When you have one node and something goes wrong you can quickly ssh to it and fix it manually - but when you do a deployment to 5 nodes simultaneously and something goes wrong - that could be a huge problem.
 
-I've never considered myself as a system administrator and never worked in such role - but projecting my developer's experience to the problem the first and most obvious solution that came into my mind was - we need tests.
+I've never considered myself as a system administrator and never worked in such role - but projecting my developer's experience to the problem the first and the most obvious solution that came into my mind was - we need tests.
 
 I've reviewed several [existing](https://github.com/Atalanta/cucumber-chef) [tools](https://github.com/hedgehog/cuken) but I haven't found anything that would satisfy me. The common problem with these tools, in my opinion, is their sometimes overkill complexity and limitations. Chef itself is a complex tool and adding additional complexity makes it practically unusable.
 
@@ -27,9 +27,11 @@ The only way that I've found was to figure out something myself. Here is the lis
 
 After thinking about it for several days I decided that it is time to do something. It took several hours to build a tool that completely satisfied me. This tool is a chef cookbook that does two main things: it copies test suite to a target node and sets chef handler that fires after `chef-client` run and executes this test suite.
 
-This thing is open sourced and you can find it here - https://github.com/iafonov/simple_cuke
+This thing is open sourced and you can find it on github - [https://github.com/iafonov/simple_cuke](https://github.com/iafonov/simple_cuke)
 
 ## How it works
+
+The main idea begind implementation is to keep it as simple as possible. So here are all three steps that are taken to run tests:
 
 1. Cookbook's default recipe synchronizes the `files/default/suite` cookbook's folder with remote node via calling `remote_directory` LWRP
 2. [Chef handler](http://wiki.opscode.com/display/chef/Exception+and+Report+Handlers) is registered
@@ -37,7 +39,7 @@ This thing is open sourced and you can find it here - https://github.com/iafonov
 
 ## Test suite
 
-Test suite is basically a set of cucumber features. In these features you can test whatever you want - for example you can test whether daemon is running or uploads directory is writeable by the user under which application is running.
+Test suite is basically a set of cucumber features. In these features you can test whatever you want - for example you can test whether daemon is running or uploads directory is writeable by the user responsible for running the application.
 
 The cookbook will automatically install and link [aruba](https://github.com/cucumber/aruba/) gem for you. Aruba is a set of handy cucumber steps that are intended to test CLI applications and test manipulation with file system. This is exactly what is needed during verification of infrastructure setup. You can see the full list of steps [here](https://github.com/cucumber/aruba/blob/master/lib/aruba/cucumber.rb)
 
@@ -49,37 +51,41 @@ Add role name as tag to the scenario or feature and it would be run only on node
 
 Trivial example - here we check that apache process appears in `ps` output. Both steps are aruba's standard steps so you don't have to write your own step definitions. This feature would be run only on nodes that have role `appserver` in their run list.
 
-		@appserver
-		Feature: Application server
+{% highlight gherkin %}
+@appserver
+Feature: Application server
 
-		Scenario: Apache configuration check
-		  When I successfully run `ps aux`
-		  Then the output should contain "apache"
+Scenario: Apache configuration check
+  When I successfully run `ps aux`
+  Then the output should contain "apache"
+{% endhighlight %}
 
 Slightly more advanced example - lets check that services are running, bind to their ports and aren't blocked by firewall:
 
-		Feature: Services
+{% highlight gherkin %}
+Feature: Services
 
-		Scenario Outline: Service should be running and bind to port
-		  When I run `lsof -i :<port>`
-		  Then the output should match /<service>.*<user>/
+Scenario Outline: Service should be running and bind to port
+  When I run `lsof -i :<port>`
+  Then the output should match /<service>.*<user>/
 
-		  Examples:
-		    | service | user     | port |
-		    | master  | root     |   25 |
-		    | apache2 | www-data |   80 |
-		    | dovecot | root     |  110 |
-		    | mysqld  | mysql    | 3306 |
+  Examples:
+    | service | user     | port |
+    | master  | root     |   25 |
+    | apache2 | www-data |   80 |
+    | dovecot | root     |  110 |
+    | mysqld  | mysql    | 3306 |
 
-		Scenario Outline: Service should not be blocked by firewall
-		  When I run `ufw status`
-		  Then the output should match /<service>.*<action>/
+Scenario Outline: Service should not be blocked by firewall
+  When I run `ufw status`
+  Then the output should match /<service>.*<action>/
 
-		  Examples:
-		    | service | action |
-		    | OpenSSH |  ALLOW |
-		    | Apache  |  ALLOW |
-		    | Postfix |  ALLOW |
+  Examples:
+    | service | action |
+    | OpenSSH |  ALLOW |
+    | Apache  |  ALLOW |
+    | Postfix |  ALLOW |
+{% endhighlight %}
 
 ## Setting up
 
