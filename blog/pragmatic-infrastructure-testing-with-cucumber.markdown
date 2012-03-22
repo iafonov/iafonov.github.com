@@ -5,7 +5,11 @@ layout: post
 
 # Pragmatic approach to infrastructure setup verification & testing with chef and cucumber
 
-<div class="date">[21 Mar 2012]</div>
+<div class="date">[22 Mar 2012]</div>
+
+*TL;DR: I've created chef cookbook for acceptance testing using cucumber and aruba. Get it [here](https://github.com/iafonov/simple_cuke).*
+
+The main idea behind this article is to demonstrate you the approach for testing infrastructure setup. I'm not convincing you to use the tool I've created but rather I want to show you how easy is to create your own tool that will help you maintain the quality of infrastructure and avoid regression problems.
 
 ## The problem
 
@@ -17,17 +21,17 @@ I've reviewed several [existing](https://github.com/Atalanta/cucumber-chef) [too
 
 The only way that I've found was to figure out something myself. Here is the list of things that I wanted to get from my testing tool:
 
-* It should be simple and straightforward (Extremely important point for me)
+* It should be simple and straightforward - extremely important point for me
 * I'm big fan of cucumber - so I want to write tests using it
 * It should be a good regression testing tool - I want to know when I'll unintentionally break something
-* Maybe I'd want to use it to develop infrastructure in test first manner
+* Maybe I'd want to use it to develop infrastructure in test first manner - it is debatable thing, but why not?
 * I don't want to have a separate tool - I want it to be seamlessly integrated into existing chef infrastructure
 
 ## The solution
 
 After thinking about it for several days I decided that it is time to do something. It took several hours to build a simple tool that completely satisfied me. This tool is a chef cookbook that does two main things: it copies test suite to a target node and sets chef handler that fires after `chef-client` run and executes this test suite.
 
-Such approach is perfect for regression testing and acceptance tests.
+Such approach is perfect for regression testing and acceptance tests. After each `chef-client` run I could be sure that all systems working and I haven't broken the system.
 
 This thing is open sourced and you can find it on github - [https://github.com/iafonov/simple_cuke](https://github.com/iafonov/simple_cuke)
 
@@ -88,7 +92,7 @@ Slightly more advanced example - lets check that services are running, bind to t
 ## Setting up
 
 1. Install cookbook to your chef repo. (`git clone git://github.com/iafonov/simple_cuke.git cookbooks/simple_cuke`)
-2. Add `recipe[simple_cuke]` to run_list
+2. Add `recipe[simple_cuke]` to node's `run_list`
 3. Start writing cucumber features and put them to `files/default/suite/features` folder
 4. Run `chef-client` and enjoy
 
