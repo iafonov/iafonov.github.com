@@ -62,28 +62,28 @@ Trivial example - here we check that apache process appears in `ps` output. Both
 
 Slightly more advanced example - lets check that services are running, bind to their ports and aren't blocked by firewall:
 
-		Feature: Services
+    Feature: Services
 
-		Scenario Outline: Service should be running and bind to port
-		  When I run `lsof -i :<port>`
-		  Then the output should match /<service>.*<user>/
+    Scenario Outline: Service should be running and bind to port
+      When I run `lsof -i :<port>`
+      Then the output should match /<service>.*<user>/
 
-		  Examples:
-		    | service | user     | port |
-		    | master  | root     |   25 |
-		    | apache2 | www-data |   80 |
-		    | dovecot | root     |  110 |
-		    | mysqld  | mysql    | 3306 |
+      Examples:
+        | service | user     | port |
+        | master  | root     |   25 |
+        | apache2 | www-data |   80 |
+        | dovecot | root     |  110 |
+        | mysqld  | mysql    | 3306 |
 
-		Scenario Outline: Service should not be blocked by firewall
-		  When I run `ufw status`
-		  Then the output should match /<service>.*<action>/
+    Scenario Outline: Service should not be blocked by firewall
+      When I run `ufw status`
+      Then the output should match /<service>.*<action>/
 
-		  Examples:
-		    | service | action |
-		    | OpenSSH |  ALLOW |
-		    | Apache  |  ALLOW |
-		    | Postfix |  ALLOW |
+      Examples:
+        | service | action |
+        | OpenSSH |  ALLOW |
+        | Apache  |  ALLOW |
+        | Postfix |  ALLOW |
 
 ## Setting up
 
@@ -100,13 +100,13 @@ Chef is in charge of full control of application's infrastructure including depl
 
 Here is pretty self-explanatory list of files that are in charge of testing your node setup:
 
-		verify_handler.rb
-		suite/
-		- Gemfile
-		- Gemfile.lock
-		- features/
-			- env.rb
-			- step_definitions/
+    verify_handler.rb
+    suite/
+    - Gemfile
+    - Gemfile.lock
+    - features/
+      - env.rb
+      - step_definitions/
 
 
 The cookbook uses [bundler](http://gembundler.com/) to setup test environment on the remote node. If you open `files/default` cookbook's folder you'll see Gemfile and Gemfile.lock files. Potentially you can add your own gems to it and use them during testing. You can even get rid of cucumber and use rspec or your favorite testing framework.
