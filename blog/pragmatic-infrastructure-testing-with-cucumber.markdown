@@ -25,7 +25,9 @@ The only way that I've found was to figure out something myself. Here is the lis
 
 ## The solution
 
-After thinking about it for several days I decided that it is time to do something. It took several hours to build a tool that completely satisfied me. This tool is a chef cookbook that does two main things: it copies test suite to a target node and sets chef handler that fires after `chef-client` run and executes this test suite.
+After thinking about it for several days I decided that it is time to do something. It took several hours to build a simple tool that completely satisfied me. This tool is a chef cookbook that does two main things: it copies test suite to a target node and sets chef handler that fires after `chef-client` run and executes this test suite.
+
+Such approach is perfect for regression testing and acceptance tests.
 
 This thing is open sourced and you can find it on github - [https://github.com/iafonov/simple_cuke](https://github.com/iafonov/simple_cuke)
 
@@ -51,41 +53,37 @@ Add role name as tag to the scenario or feature and it would be run only on node
 
 Trivial example - here we check that apache process appears in `ps` output. Both steps are aruba's standard steps so you don't have to write your own step definitions. This feature would be run only on nodes that have role `appserver` in their run list.
 
-{% highlight gherkin %}
-@appserver
-Feature: Application server
+    @appserver
+    Feature: Application server
 
-Scenario: Apache configuration check
-  When I successfully run `ps aux`
-  Then the output should contain "apache"
-{% endhighlight %}
+    Scenario: Apache configuration check
+      When I successfully run `ps aux`
+      Then the output should contain "apache"
 
 Slightly more advanced example - lets check that services are running, bind to their ports and aren't blocked by firewall:
 
-{% highlight gherkin %}
-Feature: Services
+		Feature: Services
 
-Scenario Outline: Service should be running and bind to port
-  When I run `lsof -i :<port>`
-  Then the output should match /<service>.*<user>/
+		Scenario Outline: Service should be running and bind to port
+		  When I run `lsof -i :<port>`
+		  Then the output should match /<service>.*<user>/
 
-  Examples:
-    | service | user     | port |
-    | master  | root     |   25 |
-    | apache2 | www-data |   80 |
-    | dovecot | root     |  110 |
-    | mysqld  | mysql    | 3306 |
+		  Examples:
+		    | service | user     | port |
+		    | master  | root     |   25 |
+		    | apache2 | www-data |   80 |
+		    | dovecot | root     |  110 |
+		    | mysqld  | mysql    | 3306 |
 
-Scenario Outline: Service should not be blocked by firewall
-  When I run `ufw status`
-  Then the output should match /<service>.*<action>/
+		Scenario Outline: Service should not be blocked by firewall
+		  When I run `ufw status`
+		  Then the output should match /<service>.*<action>/
 
-  Examples:
-    | service | action |
-    | OpenSSH |  ALLOW |
-    | Apache  |  ALLOW |
-    | Postfix |  ALLOW |
-{% endhighlight %}
+		  Examples:
+		    | service | action |
+		    | OpenSSH |  ALLOW |
+		    | Apache  |  ALLOW |
+		    | Postfix |  ALLOW |
 
 ## Setting up
 
@@ -96,9 +94,11 @@ Scenario Outline: Service should not be blocked by firewall
 
 ## My workflow
 
-Chef is in charge of full control of application infrastructure including deploy of application. Every time we do deployment `chef-client` converges node and deploys a new version of application. I don't run `chef-client` automatically the run could be triggered only manually. I use combination of rake & knife scripts to do a deployment. All I need to do is run `rake deploy:production` from the terminal. With this setup after each successful run the test suite is run and I'm presented with its results.
+Chef is in charge of full control of application's infrastructure including deployment. Every time we do deployment `chef-client` converges node and deploys a new version of application. I don't run `chef-client` periodically in the background, the run could be triggered only manually. I use combination of rake & knife scripts to do a deployment. All I need to do is run `rake deploy:production` from the chef repo. With this setup after each successful run the test suite is run and I'm presented with its results.
 
 ## Under the hood
+
+Here is pretty self-explanatory list of files that are in charge of testing your node setup:
 
 		verify_handler.rb
 		suite/
@@ -113,6 +113,6 @@ The cookbook uses [bundler](http://gembundler.com/) to setup test environment on
 
 You can edit command that triggers test run in `verify_handler.rb` file.
 
-## Plans for the future
+## Future development
 
-For now tests result are put to stdout that makes it practically unusable if you're running `chef-client` periodically. I'm thinking about adding ability to define custom reportes that could for example send test results to email or accumulate them in file.
+For now tests result goes to stdout that makes it practically unusable if you're running `chef-client` periodically in background. I'm thinking about adding ability to define custom reporters that could for example send test results to email or accumulate them in file.
