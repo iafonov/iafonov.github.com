@@ -1,3 +1,22 @@
+#top_line {
+  padding-top: 10px;
+}
+
+#icons {
+  float: right;
+  padding-top: 5px;
+}
+
+.github {
+  background: transparent url("../images/github.ico") no-repeat;
+  padding-right: 20px;
+}
+
+.twitter {
+  background: transparent url("../images/twitter.ico") no-repeat;
+  padding-right: 20px;
+}
+
 /* http://kevinburke.bitbucket.org/markdowncss */
 #title {
   vertical-align: 40%;
