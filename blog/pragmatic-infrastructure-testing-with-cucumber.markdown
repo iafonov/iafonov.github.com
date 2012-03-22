@@ -9,7 +9,7 @@ layout: post
 
 *TL;DR: I've created chef cookbook for acceptance testing using cucumber and aruba. Get it [here](https://github.com/iafonov/simple_cuke).*
 
-The main idea behind this article is to demonstrate you the approach for testing infrastructure setup. I'm not convincing you to use the tool I've created but rather I want to show you how easy is to create your own tool that will help you maintain the quality of infrastructure and avoid regression problems.
+The main idea behind this article is to demonstrate you the approach for testing infrastructure setup. I'm not convincing you to use the tool I've created but rather I want to show you how easy it is to create your own tool that will help you maintain the quality of infrastructure and avoid regression problems.
 
 ## The problem
 
@@ -49,9 +49,9 @@ Test suite is basically a set of cucumber features. In these features you can te
 
 The cookbook will automatically install and link [aruba](https://github.com/cucumber/aruba/) gem for you. Aruba is a set of handy cucumber steps that are intended to test CLI applications and test manipulation with file system. This is exactly what is needed during verification of infrastructure setup. You can see the full list of steps [here](https://github.com/cucumber/aruba/blob/master/lib/aruba/cucumber.rb)
 
-There is no limitations on using custom steps - you can use your own defined steps. Put the step definitions into `features/step_definitions/file_steps.rb` file and they would be loaded automatically. 
+There is no limitations on using custom steps - you can use your own defined steps. Put step definitions to `features/step_definitions/<you_name_it>_steps.rb` file and they would be loaded automatically. 
 
-Add role name as tag to the scenario or feature and it would be run only on nodes that have this role. Features/scenarios without tags would be run always.
+With cucumber tags you can control on which nodes current feature or scenario should be run. If there are no tags on scenario it would be executed on all nodes.
 
 ## Examples of tests
 
