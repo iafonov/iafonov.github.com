@@ -4,27 +4,29 @@ function addLinkToSets(set) {
   if (title.indexOf("Other") != 0) {
     var link = "http://www.flickr.com/photos/iafonov/sets/" + set.id + "/";
 
-		var linkTitle = parseTitle(title);
-		var linkDate = parseDate(title);
+    var linkTitle = parseTitle(title);
+    var linkDate = parseDate(title);
 
     var linkElement = $("<a></a>").attr("href", link).text(linkTitle);
-		var dateElement = $("<span></span>").addClass("date").text(linkDate);
+    var dateElement = $("<span></span>").addClass("date").text(linkDate);
 
     $("#photo_sets").append($("<li></li>").append(linkElement).append(dateElement));
   }
 }
 
 function parseTitle(title) {
-	return $.trim(title.split("(")[0]);
+  return $.trim(title.split("(")[0]);
 }
 
 function parseDate(title) {
-	return " [" + title.split("(")[1].replace(")","") + "]";
+  return " [" + title.split("(")[1].replace(")","") + "]";
 }
 
 function buildFlickrFeed(data) {
   $("#photo_sets").empty()
   $(data.photosets.photoset).each(function() { addLinkToSets(this)} );
+
+  $("#flickr").show();
 }
 
 function getSetsList() {

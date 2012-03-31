@@ -8,7 +8,7 @@ body {
 body h3 {
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 100;
-  font-size: 35px;
+  font-size: 30px;
 }
 
 body a {
@@ -85,4 +85,22 @@ body a {
 .github {
   background: transparent url("../images/github.ico") no-repeat;
   padding-left: 20px;
+}
+
+#instagram_photos {
+  padding-left: 20px;
+}
+
+.instagram-preview {
+  width: 60px;
+  height: 60px;
+  opacity: 0.95;
+}
+
+.instagram-preview:hover {
+  opacity: 1;
+}
+
+.gray {
+  color: #666;
 }
