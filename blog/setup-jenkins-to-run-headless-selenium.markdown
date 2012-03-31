@@ -7,13 +7,13 @@ layout: post
 
 <div class="date">[2 Sep 2011]</div>
 
-1. Add [`headless`] [1] gem to test environment dependencies in your Gemfile:
+1. Add [`headless`](https://github.com/leonid-shevtsov/headless) gem to test environment dependencies in your Gemfile:
 
         group :cucumber, :test do
           gem 'headless', '~> 0.2.1'
         end
 
-    Headless is a wrapper for [`Xvfb`][2] - X Window virtual frame buffer. Also it supports video capturing from virtual screen using `ffmpeg` utility.
+    Headless is a wrapper for [`Xvfb`](http://en.wikipedia.org/wiki/Xvfb) - X Window virtual frame buffer. Also it supports video capturing from virtual screen using `ffmpeg` utility.
 
 2. Put this into `features/support` folder. I prefer to call this file headless.rb but you can name it yourself:
 
