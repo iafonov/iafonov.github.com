@@ -5,7 +5,11 @@ layout: post
 
 # Dealing with slow test suites - statistics to the rescue
 
-<div class="date">[25 May 2012]</div>
+<div class="date">[29 May 2012]</div>
+
+<a href="http://en.wikipedia.org/wiki/Moneyball_(film)">
+  <img style="padding-bottom: 15px" src="http://i.imgur.com/ixIT5.jpg">
+</a>
 
 In most cases if you're using cucumber as it should be used i.e. you're covering the most critical paths of userflow it means that even if one scenario is failing - your application is broken and it shouldn't go live.
 
@@ -21,9 +25,3 @@ Even if you're not going to re-arrange tests - having such statistics is very in
 * You've got a weak place in application that is very easy to break. 
 
 To setup Jenkins CI all you need is write a simple script that accumulates statistics and runs top failing tests first and then runs remaining test suite. You can find example of such script in this [gist](https://gist.github.com/2828887).
-
-<a href="http://en.wikipedia.org/wiki/Moneyball_(film)">
-  <img src="http://i.imgur.com/ixIT5.jpg">
-</a>
-
-<br /><br />
