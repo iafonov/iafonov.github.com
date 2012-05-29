@@ -8,7 +8,7 @@ layout: post
 <div class="date">[29 May 2012]</div>
 
 <a href="http://en.wikipedia.org/wiki/Moneyball_(film)">
-  <img style="padding-bottom: 15px" src="http://i.imgur.com/ixIT5.jpg">
+  <img style="padding-bottom: 15px; padding-top: 15px" src="http://i.imgur.com/ixIT5.jpg">
 </a>
 
 In most cases if you're using cucumber as it should be used i.e. you're covering the most critical paths of userflow it means that even if one scenario is failing - your application is broken and it shouldn't go live.
