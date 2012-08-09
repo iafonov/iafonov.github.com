@@ -9,6 +9,7 @@ body h3 {
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 100;
   font-size: 35px;
+  color: #423F37;
 }
 
 body a {
@@ -79,6 +80,9 @@ body a {
 .twitter {
   background: transparent url("../images/twitter.ico") no-repeat;
   padding-left: 20px;
+}
+
+.hire {
 }
 
 .flickr {
