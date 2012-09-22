@@ -3,6 +3,7 @@ body {
   font-size: 14px;
   line-height: 1.6em;
   width: 800px;
+  margin: auto;
 }
 
 body h3 {
@@ -16,6 +17,12 @@ body a {
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: #1177DD;
+}
+
+#photo {
+  float: left;
+  padding-right: 20px;
+  padding-bottom: 10px;
 }
 
 .date {
