@@ -30,7 +30,7 @@ In this article you will get a brief overview of things you can do to increase t
 The basic question that any email receiving server should answer when it gets email sounds like this: ok, I got an email from this IP and it claims that is was sent from this domain, is it true? There are several ways to check it and usually it's better to satisfy all of this checks because they are executed one by one in the same order they are presented here. Failing one check will lead to failing the whole chain and removing email sent by your application from mailbox.
 
 <a name="ptr">
-	
+
 </a>
 
 ### IP's PTR record
@@ -45,7 +45,7 @@ You can validate this setup using standard unix `dig` utility
     your-domain.com.
 
 <a name="spf">
-	
+
 </a>
 
 ### Domain's SPF record
@@ -75,12 +75,12 @@ And for auxiliary domains you can set SPF to the following value:
 
     v=spf1 include:foo.com ~all
 
-In this case you can manage your email policies from one place and other domains will pick it up automatically. There is a big difference between `redirect` and `include`: `redirect` completely rewrites SPF with included one and `include` just includes contents into SPF record during evaluation process. 
+In this case you can manage your email policies from one place and other domains will pick it up automatically. There is a big difference between `redirect` and `include`: `redirect` completely rewrites SPF with included one and `include` just includes contents into SPF record during evaluation process.
 
 If you want to dive deeper I recommend you to take a look into [SPF record syntax specification](http://www.openspf.net/SPF_Record_Syntax).
 
 <a name="dkim">
-	
+
 </a>
 
 ### DKIM (DomainKeys Identified Mail)
@@ -117,12 +117,12 @@ To setup Postfix MTA to sign your emails you can follow this steps (Other MTAs w
 The easiest way to verify setup is to send an email to any Gmail account and then take a look into original message. Gmail will explicitly show the result of DKIM check.
 
 <a name="validation">
-	
+
 </a>
 
 ### Validating setup programmatically with Ruby
 
-If you need to validate setup programmatically within your application you can go with [`domain_info`](https://github.com/iafonov/domain_info) ruby gem. It was created specifically for the purposes of validating email infrastructure setup. It features simple and straightforward interface and doesn't have any external dependencies. 
+If you need to validate setup programmatically within your application you can go with [`domain_info`](https://github.com/iafonov/domain_info) ruby gem. It was created specifically for the purposes of validating email infrastructure setup. It features simple and straightforward interface and doesn't have any external dependencies.
 
     domain = DomainInfo::Domain.new("github.com")
 
@@ -149,7 +149,7 @@ If you need to validate setup programmatically within your application you can g
 
 
 <a name="bounces">
-	
+
 </a>
 
 ### Handling bounces
@@ -169,7 +169,7 @@ To setup your infrastructure to handle bounces you'll have to do the following s
 For the most situations just the fact that you've received bounce means that you shouldn't continue sending emails to this address, but strictly speaking you can parse bounce email and get the reason of the bounce. Bounces usually fall into two categories soft bounces and hard bounces. Hard bounce means that email address you're trying to send email is invalid. With soft bounces you can try to send email later but in practice soft bounces are very rare and in most cases it's easier to treat them as hard bounces.
 
 <a name="bounces_rails">
-	
+
 </a>
 
 ### Handling bounces with Ruby
@@ -245,4 +245,4 @@ Some big email providers don't like receiving emails from one IP with a high fre
 
 This article covers only basic things you can do to increase your email delivery percentage. It doesn't cover things like dealing with blacklists, warming up your IPs etc. I really recommend you to take a look into awesome [Mailchimp's guide about email delivery](http://mailchimp.com/resources/guides/html/email-delivery-for-it-professionals/) it quickly goes through almost all possible aspects of email delivery.
 
-<a name="spf_record"></a>\* *There is a special DNS record for SPF record but its not adopted everywhere so it is better to have TXT record or both*
+<a name="spf_record">\* *There is a special DNS record for SPF record but its not adopted everywhere so it is better to have TXT record or both*</a>
