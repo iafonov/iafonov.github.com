@@ -13,16 +13,17 @@ body h3 {
   color: #423F37;
 }
 
+body h4 {
+  font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+  color: #423F37;
+}
+
 body a {
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: #1177DD;
-}
-
-#photo {
-  float: left;
-  padding-right: 20px;
-  padding-bottom: 10px;
 }
 
 .date {
@@ -30,13 +31,8 @@ body a {
 }
 
 #contacts {
-  padding: 0;
-  margin: 0;
-}
-
-#contacts li {
-  list-style-type:none;
-  padding: 4px;
+  padding: 0px;
+  padding-left: 20px;
 }
 
 #posts {
@@ -57,64 +53,6 @@ body a {
 #photo_sets {
   padding: 0px;
   padding-left: 20px;
-}
-
-.skype {
-  background: transparent url("../images/skype.ico") no-repeat;
-  padding-left: 20px;
-}
-
-.gmail {
-  background: transparent url("../images/gmail.ico") no-repeat;
-  padding-left: 20px;
-}
-
-.linkedin {
-  background: transparent url("../images/linkedin.ico") no-repeat;
-  padding-left: 20px;
-}
-
-.careers {
-  background: transparent url("../images/careers.ico") no-repeat;
-  padding-left: 20px;
-}
-
-.stackoverflow {
-  background: transparent url("../images/stack.ico") no-repeat;
-  padding-left: 20px;
-}
-
-.twitter {
-  background: transparent url("../images/twitter.ico") no-repeat;
-  padding-left: 20px;
-}
-
-.hire {
-}
-
-.flickr {
-  background: transparent url("../images/flickr.ico") no-repeat;
-  padding-left: 20px;
-  background-size: 16px 16px;
-}
-
-.github {
-  background: transparent url("../images/github.ico") no-repeat;
-  padding-left: 20px;
-}
-
-#instagram_photos {
-  padding-left: 20px;
-}
-
-.instagram-preview {
-  width: 60px;
-  height: 60px;
-  opacity: 0.95;
-}
-
-.instagram-preview:hover {
-  opacity: 1;
 }
 
 .gray {
