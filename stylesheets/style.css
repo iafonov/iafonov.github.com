@@ -33,6 +33,7 @@ body a {
 #contacts {
   padding: 0px;
   padding-left: 20px;
+  list-style: none;
 }
 
 #posts {
