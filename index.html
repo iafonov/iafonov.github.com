@@ -14,7 +14,7 @@
         if (title.indexOf("Other") != 0) {
           var link = "http://www.flickr.com/photos/iafonov/sets/" + set.id + "/";
 
-          var linkTitle = parseTitle(title);
+          var linkTitle = parseTitle(title).replace("-", "–");
           var linkDate = parseDate(title);
 
           var linkElement = $("<a></a>").attr("href", link).text(linkTitle);
@@ -100,6 +100,8 @@
       <div id="flickr">
         <h4>Travel</h4>
         <ul id="photo_sets">Loading...</ul>
+      </div>
+      <div id="footer">
       </div>
     </div>
     <script src="http://static.getclicky.com/js" type="text/javascript"></script>
