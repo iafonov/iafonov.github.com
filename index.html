@@ -29,7 +29,6 @@
       }
 
       function parseDate(title) {
-        console.log(title)
         return " [" + title.split("(")[1].replace(")","") + "]";
       }
 
@@ -46,13 +45,13 @@
       }
 
       $(function () {
-        getSetsList();
+        // getSetsList();
       })
     </script>
   </head>
   <body>
     <div id="content">
-      <img id="photo" src="me.jpg" height="175" width="175" style="float: left; padding: 0px 28px 5px 0px;"/>
+      <img id="photo" src="http://www.gravatar.com/avatar/dd13a61bab3fe4243f3ebc683f9219eb.png?size=350" height="175" width="175" style="float: left; padding: 0px 28px 5px 0px;"/>
       <div id="header">
         <h3>Igor Afonov</h3>
       </div>
@@ -60,6 +59,7 @@
         <ul id="contacts">
           <li><a href="http://www.linkedin.com/in/iafonov">linkedin.com/in/iafonov</a></li>
           <li><a href="http://github.com/iafonov">github.com/iafonov</a></li>
+          <li><a href="https://flickr.com/iafonov/sets">flickr.com/iafonov/sets</a></li>
           <li><a href="mailto:afonov@gmail.com">afonov@gmail.com</a></li>
         </ul>
       </div>
@@ -97,7 +97,7 @@
           <a href="http://speakerdeck.com/u/iafonov/p/chef-infrastructure-as-code">Chef. Infrastructure as code</a>  @ <a href="cnc.dn.ua">C'n'C Donetsk</a> <span class="date">[19 Nov 2011]</span>
         </li>
       </ul>
-      <div id="flickr">
+      <div id="flickr" style="display:none">
         <h4>Travel</h4>
         <ul id="photo_sets">Loading...</ul>
       </div>
