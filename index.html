@@ -5,49 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" href="https://secure.gravatar.com/avatar/dd13a61bab3fe4243f3ebc683f9219eb.png?s=16" />
     <link href="stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      var $ = jQuery;
-      function addLinkToSets(set) {
-        var title = set.title._content;
-
-        if (title.indexOf("Other") != 0) {
-          var link = "http://www.flickr.com/photos/iafonov/sets/" + set.id + "/";
-
-          var linkTitle = parseTitle(title).replace("-", "–");
-          var linkDate = parseDate(title);
-
-          var linkElement = $("<a></a>").attr("href", link).text(linkTitle);
-          var dateElement = $("<span></span>").addClass("date").text(linkDate);
-
-          $("#photo_sets").append($("<li></li>").append(linkElement).append(dateElement));
-        }
-      }
-
-      function parseTitle(title) {
-        return $.trim(title.split("(")[0]);
-      }
-
-      function parseDate(title) {
-        return " [" + title.split("(")[1].replace(")","") + "]";
-      }
-
-      function buildFlickrFeed(data) {
-        $("#photo_sets").empty()
-        $(data.photosets.photoset).each(function() { addLinkToSets(this)} );
-
-        $("#flickr").show();
-      }
-
-      function getSetsList() {
-        $.ajax({ url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=f6eaf319ebfea38373927273fc9fab61&user_id=31344372%40N03&format=json&jsoncallback=buildFlickrFeed",
-                 dataType: 'jsonp' });
-      }
-
-      $(function () {
-        // getSetsList();
-      })
-    </script>
   </head>
   <body>
     <div id="content">
@@ -59,14 +16,16 @@
         <ul id="contacts">
           <li><a href="http://www.linkedin.com/in/iafonov">linkedin.com/in/iafonov</a></li>
           <li><a href="http://github.com/iafonov">github.com/iafonov</a></li>
-          <li><a href="https://flickr.com/iafonov/sets">flickr.com/iafonov/sets</a></li>
           <li><a href="mailto:afonov@gmail.com">afonov@gmail.com</a></li>
         </ul>
       </div>
       <div style="clear:both"></div>
       <h4>Blog</h4>
       <ul id="posts">
-	<li>
+        <li>
+          <a href="blog/reed-hastings-netflix-interview.html">Netflix Reed Hastings interview</a> <span class="date">[17 Nov 2017]</span>
+        </li>
+	      <li>
           <a href="blog/deailing-with-slow-test-suite-statistics-to-the-rescue.html">Dealing with slow test suites &ndash; statistics to the rescue</a> <span class="date">[29 May 2012]</span>
         </li>
         <li>
@@ -97,43 +56,10 @@
           <a href="http://speakerdeck.com/u/iafonov/p/chef-infrastructure-as-code">Chef. Infrastructure as code</a>  @ <a href="cnc.dn.ua">C'n'C Donetsk</a> <span class="date">[19 Nov 2011]</span>
         </li>
       </ul>
-      <div id="flickr" style="display:none">
-        <h4>Travel</h4>
-        <ul id="photo_sets">Loading...</ul>
-      </div>
-      <div id="footer">
-      </div>
     </div>
     <script src="http://static.getclicky.com/js" type="text/javascript"></script>
     <script type="text/javascript">clicky.init(252648);</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="http://in.getclicky.com/252648ns.gif" /></p></noscript>
-    <!-- Yandex.Metrika counter -->
-    <div style="display:none;"><script type="text/javascript">
-    (function(w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter11840050 = new Ya.Metrika({id:11840050, enableAll: true, webvisor:true});
-            }
-            catch(e) { }
-        });
-    })(window, "yandex_metrika_callbacks");
-    </script></div>
-    <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
-    <noscript><div><img src="//mc.yandex.ru/watch/11840050" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <!-- disqus -->
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'iafonov'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
   </body>
 </html>
 
