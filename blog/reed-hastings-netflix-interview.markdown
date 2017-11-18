@@ -1,4 +1,3 @@
-
 ---
 title: Awesome & entertaining Netflix Reed Hastings interview
 layout: post
