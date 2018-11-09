@@ -57,6 +57,6 @@ exec nm-applet
 
 Enjoy!
 
- <img style="padding-bottom: 15px; padding-top: 15px" src="/images/i3.png">
+ <img style="padding-bottom: 15px; padding-top: 15px; width: 800px" src="/images/i3.png">
 
 <br/>
