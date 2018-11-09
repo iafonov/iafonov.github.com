@@ -16,7 +16,7 @@ Just follow [this awesome guide step by
 step](https://blog.jayway.com/2015/11/22/ubuntu-full-disk-encrypted-macosx/).
 Dual boot works fine. Both OS X and Linux partitions are encrypted.
 
-### i3 quircks
+### i3 quirks
 
 Seems like everything works out of the box in Gnome. i3 requires some manual
 things to do to make it run fine. I'm too lazy to setup hotkeys for screen
