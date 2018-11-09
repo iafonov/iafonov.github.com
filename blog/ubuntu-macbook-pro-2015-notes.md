@@ -14,7 +14,7 @@ missing features.
 
 Just follow [this awesome guide step by
 step](https://blog.jayway.com/2015/11/22/ubuntu-full-disk-encrypted-macosx/).
-Dual boot works fine both OS X and Linux partitions can be encrypted.
+Dual boot works fine. Both OS X and Linux partitions are encrypted.
 
 ### i3 quircks
 
